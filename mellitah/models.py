@@ -25,7 +25,7 @@ class Comment(models.Model):
     content = models.CharField(max_length=200)
     content_body = models.TextField()
     created_dated = models.DateTimeField(default=timezone.now)
-    approve = models.BooleanField(default = False)
+    approve = models.BooleanField()
  
 
     def approve(self):

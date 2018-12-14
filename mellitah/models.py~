@@ -21,10 +21,10 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    author = models.ForeignKey(Post , on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
+    commenter = models.ForeignKey(Post , on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    content_body = models.TextField()
+    created_dated = models.DateTimeField(default=timezone.now)
     approve = models.BooleanField(default = False)
  
 
