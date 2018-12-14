@@ -11,10 +11,25 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    comment = models.TextField() 
+ 
 
     def publish(self):
         self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+
+class Comment(models.Model):
+    commenter = models.ForeignKey(Post , on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    content_body = models.TextField()
+    created_dated = models.DateTimeField(default=timezone.now)
+    approve = models.BooleanField(default = False)
+ 
+
+    def approve(self):
+        self.approve= True
         self.save()
 
     def __str__(self):
