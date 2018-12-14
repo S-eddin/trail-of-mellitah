@@ -4,13 +4,13 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+ 
  
 
     def publish(self):
@@ -20,17 +20,19 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
+
 class Comment(models.Model):
-    commenter = models.ForeignKey(Post , on_delete=models.CASCADE)
+     
     content = models.CharField(max_length=200)
     content_body = models.TextField()
     created_dated = models.DateTimeField(default=timezone.now)
-    approve = models.BooleanField()
+    comments = models.ForeignKey(Post, on_delete=models.CASCADE)
  
 
-    def approve(self):
-        self.approve= True
-        self.save()
+     
 
     def __str__(self):
         return self.title
+
+ 
